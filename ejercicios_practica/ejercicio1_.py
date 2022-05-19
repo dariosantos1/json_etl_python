@@ -8,6 +8,9 @@
 # que aparecen en verde con el hashtag "#"
 
 import json
+from textwrap import indent
+
+from matplotlib.font_manager import json_dump
 
 
 def serializar():
@@ -31,6 +34,17 @@ def serializar():
     # un archivo que usted defina
 
     # Observe el archivo y verifique que se almaceno lo deseado
+    json_data = {"Nombre" : "Dario",
+                 "Apellido" : "Santos",
+                 "DNI" : 26666666,
+                 "Elementos De Vestir" : [
+                                          { "Prenda" : "Zapatillas" , "Cantidad" : 2},
+                                          { "Prenda" : "Camisas" , "Cantidad" : 5},
+                                          { "Prenda" : "Jeans" , "Cantidad" : 4}]}
+    with open ("json_data.json" , "w") as jsonfile :
+        json.dump (json_data, jsonfile, indent =4)
+
+
 
 
 def deserializar():
@@ -44,6 +58,9 @@ def deserializar():
     # el método "dumps" y finalmente imprimir en pantalla el resultado
     # Recuerde utilizar indent=4 para poder observar mejor el resultado
     # en pantalla y comparelo contra el JSON que generó en la función anterior
+    with open ("json_data.json" , "r") as jsonfile :
+        json_data = json.load(jsonfile)
+        print(json.dumps(json_data, indent=4))
 
 if __name__ == '__main__':
     print("Bienvenidos a otra clase de Inove con Python")
